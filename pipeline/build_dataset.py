@@ -12,20 +12,20 @@ from scraper.cement_scraper import get_cement_data
 from scraper.steel_scraper import get_steel_data
 
 def main():
-    print("🚀 Starting data collection...")
+    print("Starting data collection...")
     
-    print("📡 Scraping Cement data...")
+    print("Scraping Cement data...")
     cement_data = get_cement_data()
-    print(f"✅ Collected {len(cement_data)} cement entries.")
+    print(f"Collected {len(cement_data)} cement entries.")
     
-    print("📡 Scraping Steel data...")
+    print("Scraping Steel data...")
     steel_data = get_steel_data()
-    print(f"✅ Collected {len(steel_data)} steel entries.")
+    print(f"Collected {len(steel_data)} steel entries.")
 
     combined_data = cement_data + steel_data
 
     if not combined_data:
-        print("❌ No data collected. Please check your scrapers.")
+        print("Error: No data collected. Please check your scrapers.")
         return
 
     df = pd.DataFrame(combined_data)
@@ -39,10 +39,23 @@ def main():
         os.makedirs(output_dir)
 
     output_file = os.path.join(output_dir, "maharashtra_material_dataset.csv")
+    
+    # --- APPEND LOGIC FOR HISTORICAL DATA ---
+    if os.path.exists(output_file):
+        print(f"Found existing dataset, appending new data...")
+        old_df = pd.read_csv(output_file)
+        df = pd.concat([old_df, df], ignore_index=True)
+        
+        # Remove duplicates (in case the script is run multiple times on same day)
+        df = df.drop_duplicates(subset=["date", "material", "brand", "category", "grade", "city"])
+    
+    # Sort for better readability
+    df = df.sort_values(by=["date", "material", "city", "brand"], ascending=[False, True, True, True])
+    
     df.to_csv(output_file, index=False)
 
-    print(f"\n✨ Dataset created successfully: {output_file}")
-    print(f"📊 Total records: {len(df)}")
+    print(f"\nDataset updated successfully: {output_file}")
+    print(f"Total records in dataset: {len(df)}")
     print("\nPreview of the data:")
     print(df.head())
 

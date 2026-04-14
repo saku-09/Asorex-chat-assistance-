@@ -1,3 +1,10 @@
 pandas
 requests
 beautifulsoup4
+scikit-learn
+tensorflow
+matplotlib
+numpy
+joblib
+schedule
+flask

@@ -1,20 +1,108 @@
-# Python cache
-__pycache__/
-*.pyc
+# =========================
 
-# Virtual environment (VERY IMPORTANT)
+# 🔹 Python cache
+
+# =========================
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# =========================
+
+# 🔹 Virtual Environment
+
+# =========================
+
 venv/
+env/
+ENV/
+.venv/
 
-# Dataset files (IMPORTANT decision)
-data/
-*.csv
+# =========================
 
-# Logs
-*.log
+# 🔹 Environment Variables
 
-# OS files
+# =========================
+
+.env
+
+# =========================
+
+# 🔹 VS Code / IDE
+
+# =========================
+
+.vscode/
+
+# =========================
+
+# 🔹 OS Files
+
+# =========================
+
 .DS_Store
 Thumbs.db
 
-# VS Code settings
-.vscode/
+# =========================
+
+# 🔹 Logs
+
+# =========================
+
+*.log
+
+# =========================
+
+# 🔹 Data Files (optional)
+
+# =========================
+
+data/
+*.csv
+
+# =========================
+
+# 🔹 ML Model Files (IMPORTANT)
+
+# =========================
+
+*.pkl
+*.joblib
+models/
+outputs/models/
+output/graphs/
+# =========================
+
+# 🔹 Temporary Files
+
+# =========================
+
+*.tmp
+
+# =========================
+
+# 🔹 Flask Specific
+
+# =========================
+
+instance/
+.webassets-cache
+
+# =========================
+
+# 🔹 Jupyter
+
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+
+# 🔹 Build / Distribution
+
+# =========================
+
+build/
+dist/
+*.egg-info/

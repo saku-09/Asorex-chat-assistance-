@@ -52,7 +52,7 @@ def scrape_steel_sources():
         text = soup.get_text()
 
         # Extract brand, grade, and price patterns: "Tata Steel Fe500 ₹62000"
-        matches = re.findall(r"(Tata|JSW|SAIL|Kamdhenu|Jindal|Essar).*?(Fe\d+).*?₹?(\d{5})", text, re.I)
+        matches = re.findall(r"(Tata|JSW|SAIL|Kamdhenu|Jindal|Essar).*?(Fe\d+).*?[\u20b9]?(\d{5})", text, re.I)
         for match in matches:
             brand = match[0]
             grade = match[1]
@@ -60,7 +60,7 @@ def scrape_steel_sources():
             if 40000 < price < 85000: # Valid steel price range per ton
                 data.append({"brand": brand, "grade": grade, "price": price})
     except Exception as e:
-        print(f"   ⚠️ Error scraping Steel: {e}")
+        print(f"   [WARNING] Error scraping Steel: {e}")
     
     return data
 
@@ -68,19 +68,19 @@ def scrape_steel_sources():
 # MAIN FUNCTION
 # -----------------------------
 def get_steel_data():
-    print("   🔍 Collecting all Steel brands from Nexizo...")
+    print("   Collecting all Steel brands from Nexizo...")
     raw_data = scrape_steel_sources()
 
     # Fallback if scraping fails
     if not raw_data:
-        print("   ⚠️ No live steel data found, using fallback baseline...")
+        print(f"   [WARNING] No live steel data found, using fallback baseline...")
         raw_data = [
             {"brand": "Tata", "grade": "Fe500", "price": 62000},
             {"brand": "JSW", "grade": "Fe550", "price": 65000},
             {"brand": "SAIL", "grade": "Fe500", "price": 61000}
         ]
     else:
-        print(f"   ✅ Collected {len(raw_data)} baseline entries.")
+        print(f"   [SUCCESS] Collected {len(raw_data)} baseline entries.")
 
     final_data = []
     date_today = datetime.today().strftime("%Y-%m-%d")

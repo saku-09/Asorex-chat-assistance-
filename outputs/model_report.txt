@@ -1,0 +1,14 @@
+MODEL REGRESSION PERFORMANCE REPORT
+============================================================
+Metric               | Random Forest   | LSTM           
+------------------------------------------------------------
+R2 Score (Acc)       | 99.82%          | 92.35%         
+Mean Abs Error       | 816.25          | 2961.94        
+Root Mean Sq Err     | 1308.03         | 8500.52        
+Expl. Variance       | 99.82%          | 92.38%         
+Support (Samples)    | 3600            | 3592           
+------------------------------------------------------------
+
+OVERALL SUMMARY:
+Primary Model: Random Forest (Highest R2 Score)
+Status: Model exceeds 90% accuracy target.

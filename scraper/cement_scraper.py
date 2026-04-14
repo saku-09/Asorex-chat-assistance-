@@ -59,14 +59,14 @@ def scrape_recons():
                 text = cols[0].text.strip()
                 price_text = cols[1].text.strip()
                 try:
-                    price = float(price_text.replace("₹", "").replace(",", "").strip())
+                    price = float(price_text.replace("\u20b9", "").replace(",", "").strip())
                     category = detect_category(text)
                     brand = text.split(" ")[0] # Extract brand
                     data.append({"brand": brand, "category": category, "price": price})
                 except:
                     continue
     except Exception as e:
-        print(f"   ⚠️ Error scraping Recons: {e}")
+        print(f"   [WARNING] Error scraping Recons: {e}")
     
     return data
 
@@ -84,14 +84,14 @@ def scrape_indiamart():
         text = soup.get_text()
         
         # Regex to find Brand and Price
-        matches = re.findall(r"(Ultratech|ACC|Ambuja|JK|Birla|Dalmia|Sree).*?₹\s?(\d+)", text, re.I)
+        matches = re.findall(r"(Ultratech|ACC|Ambuja|JK|Birla|Dalmia|Sree).*?[\u20b9]\s?(\d+)", text, re.I)
         for match in matches:
             brand = match[0]
             price = int(match[1])
             if 250 < price < 500: # Valid cement price range per bag
                 data.append({"brand": brand, "category": "General", "price": price})
     except Exception as e:
-        print(f"   ⚠️ Error scraping IndiaMART: {e}")
+        print(f"   [WARNING] Error scraping IndiaMART: {e}")
     
     return data
 
@@ -99,21 +99,21 @@ def scrape_indiamart():
 # MAIN FUNCTION
 # -----------------------------
 def get_cement_data():
-    print("   🔍 Collecting all Cement brands from Recons + IndiaMART...")
+    print("   Collecting all Cement brands from Recons + IndiaMART...")
     raw_data = []
     raw_data += scrape_recons()
     raw_data += scrape_indiamart()
 
     # Fallback if scraping fails
     if not raw_data:
-        print("   ⚠️ No live data found, using fallback baseline...")
+        print(f"   [WARNING] No live data found, using fallback baseline...")
         raw_data = [
             {"brand": "Ambuja", "category": "OPC", "price": 330},
             {"brand": "ACC", "category": "PPC", "price": 310},
             {"brand": "UltraTech", "category": "OPC", "price": 340}
         ]
     else:
-        print(f"   ✅ Collected {len(raw_data)} baseline entries.")
+        print(f"   [SUCCESS] Collected {len(raw_data)} baseline entries.")
 
     final_data = []
     date_today = datetime.today().strftime("%Y-%m-%d")

@@ -159,12 +159,6 @@ http://127.0.0.1:5000
 
 ---
 
-## 🎤 Viva Explanation (Important)
-
-> "The system uses NLP for query understanding, machine learning for price forecasting, and fallback mechanisms to ensure reliable outputs even when real-time data is unavailable."
-
----
-
 ## 🔥 Future Improvements
 
 * 📈 Graph visualization for trends
@@ -174,14 +168,3 @@ http://127.0.0.1:5000
 * ☁️ Cloud deployment
 
 ---
-
-## 👩‍💻 Author
-
-**Sakshi Padwal**
-MTech Project | AI & Data Science
-
----
-
-## 📜 License
-
-This project is for academic and research purposes.

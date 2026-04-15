@@ -6,85 +6,91 @@
 
 ## 📌 Overview
 
-The **Asorex AI Chat Assistant** is an intelligent conversational system designed to provide real-time insights into construction material prices such as **Cement** and **Steel**.
+The **Asorex AI Chat Assistant** is an intelligent chatbot that provides real-time and predictive insights for construction materials such as **Cement** and **Steel**.
 
-The system combines **Natural Language Processing (NLP)**, **Machine Learning**, and **Web Scraping** to deliver accurate, context-aware, and future price predictions based on user queries.
+The system integrates:
+
+* Natural Language Processing (NLP)
+* Machine Learning (LSTM & Random Forest)
+* Web Scraping
+* Data Analytics
+
+to deliver **accurate, context-aware, and future price predictions**.
 
 ---
 
 ## 🎯 Key Features
 
-* 🧱 **Cement & Steel Price Tracking**
-* 📍 **City-wise Pricing (Maharashtra)**
-* 🏷️ **Brand-based Filtering (ACC, UltraTech, JSW, SAIL, etc.)**
-* 📊 **Past, Current & Future Price Prediction**
-* 📅 **Date-wise Query Handling (e.g., "price on 10 April")**
-* 🔮 **ML-based Future Forecasting**
-* 📈 **Multi-day Predictions (next 3 days, next week)**
-* 📉 **Historical Analysis (last 3 days, past week)**
-* 🔄 **Web Scraping Fallback (Real-time data)**
-* 🤖 **Context-aware Chatbot (Remembers previous inputs)**
-* ⚙️ **Error Handling & Data Fallback System**
+* 🧱 Cement & Steel price tracking
+* 📍 City-wise pricing across Maharashtra
+* 🏷️ Brand-based filtering (ACC, UltraTech, SAIL, JSW, etc.)
+* 📊 Historical data analysis (past days)
+* 📅 Date-based queries ("price on 10 April")
+* 🔮 ML-based future prediction
+* 📈 Multi-day prediction (next 3–7 days)
+* 🔁 Comparison across cities & brands
+* 🤖 Context-aware chatbot
+* ⚠️ Smart fallback (scraping + estimation)
 
 ---
 
-## 🧠 How It Works
+## 🧠 Machine Learning Models
 
-1. User enters a query (e.g., *"cement price tomorrow in Pune"*)
-2. NLP module extracts:
-
-   * Material
-   * City
-   * Brand
-   * Category/Grade
-   * Time context (past / present / future)
-3. System processes request:
-
-   * 📊 Past → Dataset
-   * 💰 Current → Dataset
-   * 📈 Future → ML Model
-4. If data unavailable:
-
-   * 🔄 Web scraping is triggered
-   * ⚠️ Fallback estimation is applied
-
----
-
-## 🛠️ Tech Stack
-
-* **Frontend**: HTML, CSS, JavaScript
-* **Backend**: Python (Flask)
-* **Machine Learning**: Trend-based forecasting model
-* **NLP**: Regex-based entity extraction
-* **Web Scraping**: BeautifulSoup, Requests
-* **Data Handling**: Pandas
+* 🔵 **LSTM Model** → Time-series forecasting
+* 🟢 **Random Forest** → Price prediction comparison
+* ⚙️ **Scaler + Encoders** → Data preprocessing
 
 ---
 
 ## 📂 Project Structure
 
 ```bash
-Asorex-Assistant/
+Asorex Assistant/
 │
-├── app/
-│   ├── app.py              # Flask app entry point
-│   ├── chatbot.py          # Chatbot logic
-│   ├── nlp_utils.py        # NLP processing
-│   ├── model_utils.py      # ML prediction logic
+├── app/                         # Chatbot & backend logic
+│   ├── app.py
+│   ├── chatbot.py
+│   ├── model_utils.py
+│   ├── nlp_utils.py
+│   ├── scraper_utils.py
+│   ├── templates/
+│   │   └── index.html
+│   └── static/
+│       ├── style.css
+│       └── script.js
 │
-├── scraper/
+├── models/                      # ML models & training
+│   ├── lstm_model.py
+│   ├── random_forest.py
+│   ├── train.py
+│   ├── predict.py
+│   ├── preprocess.py
+│   └── visualize.py
+│
+├── outputs/                     # Generated outputs
+│   ├── graphs/
+│   │   ├── cement_forecast.png
+│   │   ├── steel_forecast.png
+│   │   └── model_comparison.png
+│   ├── models/
+│   │   ├── lstm_model.h5
+│   │   ├── random_forest.pkl
+│   │   ├── scaler.pkl
+│   │   └── encoders (.pkl files)
+│   └── predictions/
+│       ├── cement_prices.csv
+│       ├── steel_prices.csv
+│       └── future_prices.csv
+│
+├── scraper/                     # Data scraping scripts
 │   ├── cement_scraper.py
-│   ├── steel_scraper.py
+│   └── steel_scraper.py
 │
-├── data/
-│   ├── maharashtra_material_dataset.csv
+├── pipeline/                    # Dataset generation
+│   ├── build_dataset.py
+│   └── simulate_history.py
 │
-├── static/
-│   ├── style.css
-│   ├── script.js
-│
-├── templates/
-│   ├── index.html
+├── data/                        # Dataset storage
 │
 ├── requirements.txt
 └── README.md
@@ -94,7 +100,7 @@ Asorex-Assistant/
 
 ## 🚀 Installation & Setup
 
-### 1️⃣ Clone the Repository
+### 1️⃣ Clone Repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/asorex-ai-chat-assistant.git
@@ -107,7 +113,7 @@ cd asorex-ai-chat-assistant
 
 ```bash
 python -m venv venv
-venv\Scripts\activate   # Windows
+venv\Scripts\activate
 ```
 
 ---
@@ -120,7 +126,7 @@ pip install -r requirements.txt
 
 ---
 
-### 4️⃣ Run the Application
+### 4️⃣ Run Application
 
 ```bash
 python app/app.py
@@ -130,7 +136,7 @@ python app/app.py
 
 ### 5️⃣ Open in Browser
 
-```bash
+```
 http://127.0.0.1:5000
 ```
 
@@ -138,33 +144,42 @@ http://127.0.0.1:5000
 
 ## 💬 Example Queries
 
-* "Cement price in Pune today"
-* "Steel price tomorrow Fe500"
-* "Cement price last 3 days"
-* "Steel price on 20 April"
-* "Compare cement price across cities"
-* "Next 5 days cement price"
+* Cement price in Pune today
+* Steel price tomorrow Fe500
+* Cement price last 3 days
+* Steel price on 20 April
+* Compare cement price across cities
+* Next 5 days steel price
 
 ---
 
 ## 🔍 Prediction Logic
 
-* Based on **current price trend**
-* Uses **controlled growth rate**
-* Ensures:
+* Based on **current market price**
+* Uses **controlled growth model**
+* Avoids unrealistic fluctuations
+* Material-specific behavior:
 
-  * ✔ No unrealistic drop
-  * ✔ Smooth price variation
-  * ✔ Material-specific behavior
+  * Cement → stable trend
+  * Steel → slightly volatile
+
+---
+
+## 📊 Output Reports
+
+* 📈 Forecast graphs (cement & steel)
+* 📉 Model comparison charts
+* 📋 Classification & parameter reports
 
 ---
 
-## 🔥 Future Improvements
+## 🔮 Future Enhancements
 
-* 📈 Graph visualization for trends
-* 🧠 Advanced ML models (LSTM, ARIMA)
-* 🌍 Multi-state support
-* 📱 Mobile app integration
-* ☁️ Cloud deployment
+* 📊 Interactive graph visualization
+* 🧠 Advanced deep learning models
+* 🌍 Multi-state expansion
+* ☁️ Cloud deployment (AWS/Render)
+* 📱 Mobile application
 
 ---
+

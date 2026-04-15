@@ -41,9 +41,13 @@ function appendMessage(text, sender) {
     const msgDiv = document.createElement('div');
     msgDiv.className = `message ${sender}-message`;
     
-    // Convert newlines to breaks and simplify markers
-    const formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                             .replace(/\n/g, '<br>');
+    // Convert text to markdown HTML if bot, otherwise simple newline replace
+    let formattedText = text;
+    if (sender === 'bot') {
+        formattedText = marked.parse(text);
+    } else {
+        formattedText = text.replace(/\n/g, '<br>');
+    }
                              
     msgDiv.innerHTML = formattedText;
     chatWindow.appendChild(msgDiv);

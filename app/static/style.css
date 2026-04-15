@@ -161,3 +161,40 @@ header {
     background: #d1d5db;
     border-radius: 10px;
 }
+
+/* Markdown Table Styles */
+.bot-message table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.bot-message th, .bot-message td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.bot-message th {
+    background-color: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.bot-message tr:last-child td {
+    border-bottom: none;
+}
+
+.bot-message p {
+    margin-bottom: 8px;
+}
+
+.bot-message p:last-child {
+    margin-bottom: 0;
+}

@@ -69,7 +69,6 @@ data/
 
 *.pkl
 *.joblib
-models/
 outputs/models/
 output/graphs/
 # =========================

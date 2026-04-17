@@ -1,107 +1,74 @@
 # =========================
-
 # 🔹 Python cache
-
 # =========================
-
-**pycache**/
+__pycache__/
 *.py[cod]
 *$py.class
 
 # =========================
-
 # 🔹 Virtual Environment
-
 # =========================
-
 venv/
 env/
 ENV/
 .venv/
 
 # =========================
-
 # 🔹 Environment Variables
-
 # =========================
-
 .env
 
 # =========================
-
 # 🔹 VS Code / IDE
-
 # =========================
-
 .vscode/
 
 # =========================
-
 # 🔹 OS Files
-
 # =========================
-
 .DS_Store
 Thumbs.db
 
 # =========================
-
 # 🔹 Logs
-
 # =========================
-
 *.log
 
 # =========================
-
 # 🔹 Data Files (optional)
-
 # =========================
-
 data/
 *.csv
 
 # =========================
-
 # 🔹 ML Model Files (IMPORTANT)
-
 # =========================
-
 *.pkl
 *.joblib
-outputs/models/
-output/graphs/
-# =========================
+outputs/
 
+# 👉 Uncomment if models folder has trained models
+# models/
+
+# =========================
 # 🔹 Temporary Files
-
 # =========================
-
 *.tmp
 
 # =========================
-
 # 🔹 Flask Specific
-
 # =========================
-
 instance/
 .webassets-cache
 
 # =========================
-
 # 🔹 Jupyter
-
 # =========================
-
 .ipynb_checkpoints/
 
 # =========================
-
 # 🔹 Build / Distribution
-
 # =========================
-
 build/
 dist/
 *.egg-info/
